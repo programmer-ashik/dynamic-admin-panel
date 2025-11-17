@@ -1,6 +1,7 @@
 import App from '../App';
 import { Navigate } from 'react-router-dom';
 import WorkspaceLayout from '../layout/WorkspaceLayout';
+import DashboardPage from '../pages/DashboardPage';
 export const RoutesConfig = [
   {
     path: '/',
@@ -20,7 +21,7 @@ export const RoutesConfig = [
           },
           {
             path: 'dashboard',
-            element: 'Dashboard',
+            element: <DashboardPage />,
           },
         ],
       },

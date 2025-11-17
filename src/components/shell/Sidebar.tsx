@@ -1,4 +1,4 @@
-import { Plus, ChevronRight } from 'lucide-react';
+import { Plus, ChevronRight, Lock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '../../components/ui/button';
@@ -9,7 +9,7 @@ import { sidebarCollapsed } from '../../store/features/global/globalSlice';
 import { menu } from '../../shared/constant/menu.constant';
 import { LucideIcon } from '../../shared/utils/Icon/LucideIconProps';
 import { useState } from 'react';
-import { cn } from '../../lib/utils';
+import { cn, isLocked } from '../../lib/utils';
 interface SidebarProps {
   collapsed?: boolean;
 }
@@ -85,38 +85,33 @@ export function Sidebar({ collapsed = false }: SidebarProps) {
               {navbarMenu.map((item) => {
                 const isOpen = openItem === item.id;
                 const hasChildren = item.children && item.children.length > 0;
-
+                // user-role
+                const userRole = 'user';
+                const locked = isLocked(item, userRole);
+                console.log(locked);
                 return (
                   <div key={item.id}>
                     {/* MAIN ITEM */}
                     <button
+                      key={item.id}
                       onClick={() => {
-                        if (hasChildren) {
+                        if (item.children) {
                           toggleItem(item.id);
-                        } else {
+                        } else if (!locked) {
                           navigate(item.route);
                         }
                       }}
                       className={cn(
-                        'group flex w-full items-center justify-between px-3 py-2 rounded-md hover:bg-accent transition',
+                        'group flex w-full items-center justify-between px-3 py-2 rounded-md transition',
+                        locked
+                          ? 'opacity-50 cursor-not-allowed hover:bg-transparent'
+                          : 'hover:bg-accent',
                         location.pathname === item.route && 'bg-accent',
                       )}
                     >
-                      {/* Left — icon + title */}
-                      <div className="flex items-center gap-2">
-                        <LucideIcon name={item.icon} />
-                        <span>{item.title}</span>
-                      </div>
-
-                      {/* Chevron only if has children */}
-                      {hasChildren && (
-                        <motion.div
-                          animate={{ rotate: isOpen ? 90 : 0 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <ChevronRight className="h-4 w-4" />
-                        </motion.div>
-                      )}
+                      {/* {iconMapper(item.icon)} */}
+                      <span>{item.title}</span>
+                      {locked && <Lock className="w-4 h-4 text-red-500 ml-auto" />}
                     </button>
 
                     {/* CHILDREN SECTION */}
@@ -138,7 +133,7 @@ export function Sidebar({ collapsed = false }: SidebarProps) {
                                 location.pathname === child.route && 'bg-accent',
                               )}
                             >
-                              <LucideIcon name={child.icon || 'Dot'} className="h-3 w-3" />
+                              <LucideIcon name={child?.icon || 'Dot'} className="h-3 w-3" />
                               {child.title}
                             </button>
                           ))}

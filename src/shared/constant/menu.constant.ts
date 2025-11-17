@@ -1,33 +1,102 @@
 export const menu = [
   {
-    id: "dashboard",
-    title: "Dashboard",
-    icon: "LayoutGrid",
-    route: "/",
-    children: []
-  },
-  {
-    id: "notes",
-    title: "Notes",
-    icon: "FileText",
+    id: 'm1',
+    title: 'Dashboard',
+    icon: 'Home',
+    route: '/',
     children: [
-      {
-        id: "daily",
-        title: "Daily Notes",
-        route: "/daily"
-      },
-      {
-        id: "weekly",
-        title: "Weekly Notes",
-        route: "/weekly"
-      }
-    ]
+      { id: 'm1-1', title: 'Sales Analytics', route: '/dashboard/sales-analytics' },
+      { id: 'm1-2', title: 'Sallers List', route: '/dashboard/sallers-list' },
+      { id: 'm1-3', title: 'Sallers table', route: '/dashboard/sallers-table' },
+      { id: 'm1-4', title: 'Sallers Grid', route: '/dashboard/sallers-grid' },
+      { id: 'm1-5', title: 'Sallers Profile', route: '/dashboard/sallers-profile' },
+      { id: 'm1-6', title: 'Ravenue by Period', route: '/dashboard/revenue-by-period' },
+    ],
+    roles: ['admin', 'manager'],
   },
   {
-    id: "settings",
-    title: "Settings",
-    icon: "Settings",
-    route: "/settings",
-    children: []
-  }
+    id: 'm2',
+    title: 'Products',
+    icon: 'ShoppingBag',
+    children: [
+      { id: 'm2-1', title: 'Add Products', route: '/shop/add-products' },
+      { id: 'm2-1', title: 'All Products', route: '/shop/all-products' },
+      { id: 'm2-2', title: 'Top Products', route: '/shop/top-products' },
+      { id: 'm2-3', title: 'New Arrivals', route: '/shop/new-arrivals' },
+      { id: 'm2-4', title: 'Offers & Discounts', route: '/shop/offers' },
+    ],
+    roles: ['admin', 'user', 'manager'],
+  },
+  {
+    id: 'm3',
+    title: 'Categories',
+    icon: 'Grid3X3',
+    children: [
+      { id: 'm3-1', title: 'Electronics', route: '/dashboard/electronics' },
+      { id: 'm3-2', title: 'Fashion', route: '/dashboard/fashion' },
+      { id: 'm3-3', title: 'Home & Kitchen', route: '/dashboard/home-kitchen' },
+      { id: 'm3-4', title: 'Beauty & Health', route: '/dashboard/beauty-health' },
+      { id: 'm3-5', title: 'Sports', route: '/dashboard/sports' },
+    ],
+    roles: ['admin', 'user', 'manager'],
+  },
+  {
+    id: 'm4',
+    title: 'Orders',
+    icon: 'Package',
+    children: [
+      { id: 'm4-1', title: 'My Orders', route: '/orders' },
+      { id: 'm4-2', title: 'Order Tracking', route: '/orders/tracking' },
+      { id: 'm4-3', title: 'Returns & Refunds', route: '/orders/returns' },
+    ],
+    roles: ['admin'],
+  },
+  {
+    id: 'm5',
+    title: 'Cart',
+    icon: 'ShoppingCart',
+    route: '/cart',
+  },
+  {
+    id: 'm6',
+    title: 'Wishlist',
+    icon: 'Heart',
+    route: '/wishlist',
+    roles: ['admin'],
+  },
+  {
+    id: 'm7',
+    title: 'Categories',
+    icon: 'User',
+    children: [
+      { id: 'm7-1', title: 'Profile', route: '/account/profile' },
+      { id: 'm7-2', title: 'Addresses', route: '/account/addresses' },
+      { id: 'm7-3', title: 'Payment Methods', route: '/account/payments' },
+    ],
+    role: ['admin', 'user', 'manager'],
+  },
+  {
+    id: 'm8',
+    title: 'Admin',
+    icon: 'Shield',
+    children: [
+      { id: 'm8-1', title: 'Dashboard', route: '/admin' },
+      { id: 'm8-2', title: 'Products', route: '/admin/products' },
+      { id: 'm8-3', title: 'Orders', route: '/admin/orders' },
+      { id: 'm8-4', title: 'Users', route: '/admin/users' },
+      { id: 'm8-5', title: 'Settings', route: '/admin/settings' },
+    ],
+    roles: ['admin'],
+  },
+  {
+    id: 'm9',
+    title: 'Support',
+    icon: 'HelpCircle',
+    children: [
+      { id: 'm9-1', title: 'Contact Us', route: '/support/contact' },
+      { id: 'm9-2', title: 'FAQs', route: '/support/faqs' },
+      { id: 'm9-3', title: 'Shipping Info', route: '/support/shipping' },
+    ],
+    roles: ['admin', 'user'],
+  },
 ];
